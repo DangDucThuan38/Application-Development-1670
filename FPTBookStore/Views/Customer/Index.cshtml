@@ -1,0 +1,50 @@
+﻿@model List<Product>
+@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+    ViewData["Title"] = "Page Title";
+}
+
+<div class="page-heading about-heading header-text" style="background-image: url(assets/images/Book1.jpg);">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>Lorem ipsum dolor sit amet</h4>
+              <h2>Products</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="products">
+      <div class="container">
+        <div class="row">
+
+             @foreach (var item in Model)
+                            {
+          <div class="col-md-4">
+            <div class="product-item">
+              <a asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id"><img src="~/img/@item.Image" alt="project image cap" style="height: 351px; width:344px"></a>
+              <div class="down-content">
+                   <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id"><h4>@item.Name</h4></a>
+                <h6>Price: $@item.Price</h6>
+              </div>
+            </div>
+          </div>
+          }
+
+
+
+          <div class="col-md-12">
+            <ul class="pages">
+              <li><a href="#">1</a></li>
+              <li class="active"><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+                    
