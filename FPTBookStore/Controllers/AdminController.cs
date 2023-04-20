@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace KTBook.Controllers
 {
 
+
+
+
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext context;
