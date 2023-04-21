@@ -1,7 +1,6 @@
 using KTBook.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +15,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDistributedMemoryCache();           // ??ng ký d?ch v? l?u cache trong b? nh? (Session s? s? d?ng nó)
-builder.Services.AddSession(cfg => {                    // ??ng ký d?ch v? Session
-    cfg.Cookie.Name = "Huy";             // ??t tên Session - tên này s? d?ng ? Browser (Cookie)
+builder.Services.AddSession(cfg =>
+{                    // ??ng ký d?ch v? Session
+    cfg.Cookie.Name = "Thuan";             // ??t tên Session - tên này s? d?ng ? Browser (Cookie)
     cfg.IdleTimeout = new TimeSpan(0, 30, 0);    // Th?i gian t?n t?i c?a Session
 });
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);

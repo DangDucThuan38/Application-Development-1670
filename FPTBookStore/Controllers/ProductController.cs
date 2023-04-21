@@ -8,8 +8,6 @@ using System.Security.Claims;
 
 namespace KTBook.Controllers
 {
-
-
     public class ProductsController : Controller
     {
 
