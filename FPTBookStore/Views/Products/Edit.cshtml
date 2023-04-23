@@ -2,10 +2,16 @@
 
 @{
     ViewData["Title"] = "Create";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 
-    <h1>Update Product</h1>
+   <h1 style="color: blue;text-align: center">
+        Manage KTBook Store  <a asp-controller="Products" asp-action="Create" class="btn btn-success button-add" type="button">
+            <i class="fa-solid fa-plus icon-plus" style="padding-top: 10px; color:blue"></i>
+        </a>
+    </h1>
     <form class="needs-validation" novalidate asp-controller="Products" asp-action="Update" method="post">
         <input type="hidden" asp-for="Id" class="form-control" />
         <div class="form-group mb-3">

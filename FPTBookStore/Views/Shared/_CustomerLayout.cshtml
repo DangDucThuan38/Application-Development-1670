@@ -47,7 +47,7 @@
 </head>
 <body>
     <!-- banner bg main start -->
-    <div class="banner_bg_main">
+    <div class="outline_main">
         <!-- header top section start -->
         <div class="container">
             <div class="header_section_top">
@@ -71,16 +71,19 @@
                                 {
                                 <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
                                 <li><a asp-controller="Admin" asp-action="ListOrder" class="side-nav-link">Manage Order</a></li>
-                                 <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
+                                                                <li><a asp-controller="Customer" asp-action="UserView">My Profile</a></li>
 
-
-
+                                <li><a><span class="padding_10">Hello @User.Identity?.Name!</span> </a></li>
+                                <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
                                 }@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                                 {
                                     <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
                                     <li><a asp-controller="Products" asp-action="Index" class="side-nav-link">Manage Products</a></li>
                                     <li><a asp-controller="Categories" asp-action="Index" class="side-nav-link">Manage Category</a></li>
                                     <li><a asp-controller="Admin" asp-action="Reset" class="side-nav-link">Manage Account</a></li>
+                                                                    <li><a asp-controller="Customer" asp-action="UserView">My Profile</a></li>
+
+                                    <li><a><span class="padding_10">Hello @User.Identity?.Name!</span> </a></li>
                                    <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
 
                                     
@@ -100,14 +103,14 @@
         <!-- banner section start -->
 
 
-        <div class="banner_section layout_padding">
+        <div class="outline_section layout_padding">
             <div class="container">
                 <div id="my_slider" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h1 class="banner_taital">KTBook <br>Bringing knowledge to everyone</h1>
+                                    <h1 class="outline_taital">KTBook <br>Bringing knowledge to everyone</h1>
                                     <div class="buynow_bt"><a asp-controller="Customer" asp-action="Index">Log in now</a></div>
                                 </div>
                             </div>
@@ -115,7 +118,7 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h1 class="banner_taital"> KTBook<br>Latest book series</h1>
+                                    <h1 class="outline_taital"> KTBook<br>Latest book series</h1>
                                     <div class="buynow_bt"><a asp-controller="Customer" asp-action="Index">Log in now</a></div>
                                 </div>
                             </div>
@@ -153,7 +156,7 @@
 
     <div class="copyright_section">
         <div class="container">
-            <p class="copyright_text"><a>© 2023 All Desgin By (Đặng Đức Thuần && Phạm Trung Kiên)</a>></p>
+            <p class="copyright_text"><a>© 2023 All Desgin By (Đặng Đức Thuần && Phạm Trung Kiên)</a></p>
         </div>
     </div>
     <!-- copyright section end -->

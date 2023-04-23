@@ -10,27 +10,25 @@
 						<div class="col">
 							<div class="row">
 								<div class="col-4 mt-3">
-									<h6 class="text text-drak">Sort Product</h6>
 								</div>
 								<div class="col-5 ">
-									<select class="form-control" onchange="window.location.href=this.value">
-										<option value="">Select one</option>
-										<option value=""> Ascending</option>
-										<option value=""> Descending</option>
-									</select>
+									
 								</div>
 							</div>
 						</div>
 						<div class="col">
 						<div class="row">
-						<div class="col-4 mt-3">
-							<h6 class="text text-drak">Search Product</h6>
-						</div>
 						<div class="col-5">
 							<div class="form-group">
-                                <form asp-controller="Customer" asp-action="Search" method="post">
-                                        <input class="form-control" type="search" name="name" placeholder="Enter Name Product">
-								</form>
+                               <form asp-controller="Customer" asp-action="Search" method="post">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search..." id="top-search" name="search">
+                                    <span class="mdi mdi-magnify search-icon"></span>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </form>
 							</div>
 						</div>
 						</div>
