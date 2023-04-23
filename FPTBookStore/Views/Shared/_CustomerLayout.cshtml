@@ -1,177 +1,180 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
+<head>
+    <!-- basic -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>KTBook Store</title>
+    <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="~/images/favicon.ico">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="~/Template/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="~/Template/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="~/Template/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="~/Template/images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/Template/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--  -->
+    <!-- owl stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="~/Template/css/owl.carousel.min.css">
+    <link rel="stylesoeet" href="~/Template/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <title>KTBook Store</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-
-  </head>
-
-  <body>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
+</head>
+<body>
+    <!-- banner bg main start -->
+    <div class="banner_bg_main">
+        <!-- header top section start -->
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2> <em>KTBook Store</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Customer" asp-action="Index">Home
-                      <span class="sr-only">(current)</span>
-                    </a>
-                </li> 
+            <div class="header_section_top">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="custom_menu">
+                            <ul>
+                                <li><a asp-controller="Customer" asp-action="Index">KTBook</a></li>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                                {
 
-                <li class="nav-item active"><a class="nav-link" href="products.html">Products</a></li>
+                                <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Customer" asp-action="UserView">My Profile</a></li>
+                                <li><a asp-controller="Customer" asp-action="ViewCart"><span class="padding_10">My Cart</span> </a></li>
+                                <li><a asp-controller="Customer" asp-action="ViewOrder"><span class="padding_10">My Order</span> </a></li>
+                                <li><a><span class="padding_10">Hello @User.Identity?.Name!</span> </a></li>
+                                <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
+                                }
+                            
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Staff"))
+                                {
+                                <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Admin" asp-action="ListOrder" class="side-nav-link">Manage Order</a></li>
+                                 <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Category</a>
-                    
-                    <div class="dropdown-menu">
 
-                         @foreach (var item in ViewBag.Categories)
-                            {
-                                if (item.Status == "Active")
-                                    {
-                                        <a asp-controller="Customer" asp-action="Index2" asp-route-Id="@item.Id" class="dropdown-item notify-item">
-                                            <span class="align-middle">@item.Name</span>
-                                        </a>
-                                    }
-                            }
-                     
-                     
 
+                                }@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                                {
+                                    <li><a asp-controller="Customer" asp-action="Index">Home</a></li>
+                                    <li><a asp-controller="Products" asp-action="Index" class="side-nav-link">Manage Products</a></li>
+                                    <li><a asp-controller="Categories" asp-action="Index" class="side-nav-link">Manage Category</a></li>
+                                    <li><a asp-controller="Admin" asp-action="Reset" class="side-nav-link">Manage Account</a></li>
+                                   <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
+
+                                    
+                                }
+                              
+                                     <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li> 
+                                
+
+                                
+                            </ul>
+                        </div>
                     </div>
-                </li>
-                
-                <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-
-                <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Page Content -->
-   @RenderBody()
-
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="inner-content">
-              <p>Copyright © 2023 Company Name -KTBook Store (Thuần and Kiên)</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </footer>
+        <!-- header section end -->
+        <!-- banner section start -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Book Now</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="contact-form">
-              <form action="#" id="contact">
-                  <div class="row">
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Pick-up location" required="">
-                          </fieldset>
-                       </div>
 
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Return location" required="">
-                          </fieldset>
-                       </div>
-                  </div>
-
-                  <div class="row">
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Pick-up date/time" required="">
-                          </fieldset>
-                       </div>
-
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Return date/time" required="">
-                          </fieldset>
-                       </div>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Enter full name" required="">
-
-                  <div class="row">
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Enter email address" required="">
-                          </fieldset>
-                       </div>
-
-                       <div class="col-md-6">
-                          <fieldset>
-                            <input type="text" class="form-control" placeholder="Enter phone" required="">
-                          </fieldset>
-                       </div>
-                  </div>
-              </form>
-           </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Book Now</button>
-          </div>
+        <div class="banner_section layout_padding">
+            <div class="container">
+                <div id="my_slider" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="banner_taital">KTBook <br>Bringing knowledge to everyone</h1>
+                                    <div class="buynow_bt"><a asp-controller="Customer" asp-action="Index">Log in now</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h1 class="banner_taital"> KTBook<br>Latest book series</h1>
+                                    <div class="buynow_bt"><a asp-controller="Customer" asp-action="Index">Log in now</a></div>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+                    <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+     </div>
+
+      
+
+
+
+
+    @RenderBody()
+    
+
+
+
+
+
+
+
+
+
+    <!-- fashion section end -->
+    <!-- footertart -->
+
+    <div class="copyright_section">
+        <div class="container">
+            <p class="copyright_text"><a>© 2023 All Desgin By (Đặng Đức Thuần && Phạm Trung Kiên)</a>></p>
+        </div>
     </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="~/Template/js/jquery.min.js"></script>
+    <script src="~/Template/js/popper.min.js"></script>
+    <script src="~/Template/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Template/js/jquery-3.0.0.min.js"></script>
+    <script src="~/Template/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="~/Template/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Template/js/custom.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
 
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-  </body>
-
+</body>
 </html>

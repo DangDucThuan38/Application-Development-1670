@@ -23,7 +23,6 @@ namespace KTBook.Controllers
 
 
 
-        [Authorize(Roles = "Administrator,Staff")]
         public IActionResult Index()
         {
             var products = context.Product.ToList();

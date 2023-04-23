@@ -5,47 +5,52 @@
 
 }
 
-   <div class="products">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-xs-12">
-            <div>
-              <img src="~/img/@Model.Image" alt="" class="img-fluid wc-image">
-            </div>
-          </div>
-          <div class="col-md-8 col-xs-12">
-            <form action="#" method="post" class="form">
-              <h2>@Model.Name</h2>
-              <br>
-              <p class="lead">
-                <small><del> $999</del></small><strong class="text-primary">$@Model.Price</strong>
-              </p>
-              <br>
-              <p class="lead">
-                  Description: @Model.Description
-              </p>
-              <br> 
-              <div class="row">
-                <div class="col-sm-8">
-                  <label class="control-label">Quantity</label>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="1">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <a asp-controller="Customer" asp-action="AddtoCart" asp-route-Id="@Model.Id" class="btn btn-primary btn-block">Add to Cart</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
+<div class="container col-md-10 text-center mt-3">
+    <div class="row">
+        <div class="col">
+            <img src="~/img/@Model.Image" width="300" height="300">
+            <h4 class="text text-success">@Model.Name</h4>
         </div>
-      </div>
+        <div class="col">
+            <table class="table table-bordered">
+                <tr>
+                    <th colspan="2" class="h3 bg-light text-success">Book Info Details</th>
+                </tr>
+               
+                <tr>
+                    <th>Books Quantity</th>
+                    <th>
+                        @if (@Model.Quantity == 0)
+                        {
+                            <p class="font-weight-bold">Out of stock</p>
+                        }
+                        else
+                        {
+                            <p>@Model.Quantity</p>
+                        }
+                    </th>
+                </tr>
+                <tr>
+                   <th>Price of Books: </th>
+                   <th><@Model.Price</th>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <th>@Model.Description</th>
+                </tr>
+                <tr>
+                    <th><a asp-controller="Customer" asp-action="AddtoCart" asp-route-Id="@Model.Id" class="btn btn-primary btn-block">Add to Cart</a></th>
+                    <th><a asp-controller="Customer" asp-action="AddtoCart" asp-route-Id="@Model.Id" class="btn btn-primary btn-block">Order Now</a></th>
+                    
+                   
+                </tr>
+              
+            </table>
+        </div>
     </div>
+</div>
 
 
 
 
+ 

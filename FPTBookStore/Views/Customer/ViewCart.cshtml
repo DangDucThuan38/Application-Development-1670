@@ -27,6 +27,7 @@
             var thanhtien = cartitem.Quantity * cartitem.product.Price;
             total += thanhtien;
                 <tr>                   
+
                    <td>@(stt++)</td>
                    <td>@cartitem.product.Name</td>
                    <td>@(cartitem.product.Price.ToString("n0"))</td>
@@ -35,10 +36,9 @@
                    </td>
                    <td>@(thanhtien.ToString("n0"))</td>
                    <td>
-                    @*<button class="btn btn-success updatecartitem" type="submit"
-                    data-productid="@cartitem.product.Id" >Update
-                    </button>*@
-                    @*<a asp-Controller="Customer" asp-action="UpdateCart" asp-route-productid="@cartitem.product.Id" class="btn btn-success">Update</a>*@
+                   
+
+
                     <a href="#" class="btn btn-success">Update</a>
                     <a asp-Controller="Customer" asp-action="RemoveCart" asp-route-productid="@cartitem.product.Id" class="btn btn-danger">Delete</a>
                    </td>                  
