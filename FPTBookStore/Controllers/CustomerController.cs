@@ -135,7 +135,6 @@ namespace KTBook.Controllers
                 // Đã tồn tại, tăng thêm 1
                 cart.Remove(cartitem);
             }
-
             SaveCartSession(cart);
             return RedirectToAction(nameof(ViewCart));
         }
