@@ -5,7 +5,7 @@
     ViewData["Title"] = "Page Title";
 }
 
-<h2 style="text-align: center; color: tomato">SHOPPING CART </h2>
+<h2 style="text-align: center; color: blanchedalmond">SHOPPING CART </h2>
 
 @if (Model.Count > 0)
 {
@@ -30,23 +30,20 @@
 
                    <td>@(stt++)</td>
                    <td>@cartitem.product.Name</td>
-                   <td>@(cartitem.product.Price.ToString("n0"))</td>
+                   <td>@(cartitem.product.Price.ToString("n0")) $</td>
                    <td>
                     <input asp-for="@cartitem.Quantity" id="@($"quantity-{cartitem.product.Id}")"  />
                    </td>
-                   <td>@(thanhtien.ToString("n0"))</td>
+                   <td>@(thanhtien.ToString("n0"))$ </td>
                    <td>
-                   
-
-
                     <a href="#" class="btn btn-success">Update</a>
                     <a asp-Controller="Customer" asp-action="RemoveCart" asp-route-productid="@cartitem.product.Id" class="btn btn-danger">Delete</a>
                    </td>                  
                 </tr>
         }
           <tr>
-              <td colspan="4" class="text-right">Total Payment: </td>
-              <td>@(total.ToString("n0"))</td>
+              <td colspan="4" class="text-right">Total Payment:  </td>
+              <td>@(total.ToString("n0")) $</td>
               <td></td>
             <td>
                 <a type="submit" asp-controller="Customer" asp-action="Checkout" class="btn btn-success">Order confirmation product</a>
@@ -56,9 +53,7 @@
 }
 else
 {
-    <p style="text-align:center" class="alert alert-danger">There are no products in your cart!</p>
-    <p style="text-align:center" class="alert alert-danger">Please check back or add to cart a new product!</p>
-    <a asp-controller="Customer" asp-action="Index" class="btn btn-success" style="text-align:center; margin-left: 45%">Back to Shopping</a>
+    <p style="text-align:center" class="alert alert-red">My Cart Empty</p>
 }
 <script type="text/javascript">
     var elems = document.getElementsByClassName('Checkout');

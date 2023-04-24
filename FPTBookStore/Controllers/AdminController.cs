@@ -14,6 +14,13 @@ namespace KTBook.Controllers
             context = dbContext;
 
         }
+        public IActionResult ListOrder()
+        {
+            var orders = context.Order.ToList();
+            ViewBag.Users = context.Users.ToList();
+            ViewBag.products = context.Product.ToList();
+            return View(orders);
+        }
 
         [Route("/Admin")]
         public IActionResult Index()
