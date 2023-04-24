@@ -3,7 +3,7 @@
 }
 
 <h1 style="color: black;text-align: center">
-    Reset password
+    KTBook Store Manage Account 
 </h1>
     @if (TempData["Message"] != null)
     {
@@ -15,12 +15,11 @@
     {
         <p></p>
     }
-    <h2>Wellcome to Admin Dasboard!</h2>
 @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
 {
     <table class="table table-hover">
         <thead>
-        <tr style="background-color: chartreuse">
+        <tr style="background-color: beige">
                 <th>
                     ID
                 </th>
@@ -68,5 +67,11 @@
 
         </tbody>
     </table>
+
+    <div class="">
+    <a asp-controller="Customer" asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
+        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to Home
+    </a>
+    </div>
 }
 

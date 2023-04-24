@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1 style="color: blue;text-align: center">
-        Manage KTBook Store  <a asp-controller="Products" asp-action="Create" class="btn btn-success button-add" type="button">
+        Manage KTBook Store  <a asp-controller="Categories" asp-action="Create" class="btn btn-success button-add" type="button">
             <i class="fa-solid fa-plus icon-plus" style="padding-top: 10px; color:blue"></i>
         </a>
     </h1>
@@ -36,10 +36,14 @@
         </form>
     </div>
 </div>
+<div class="">
+        
+        <a  asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
+        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to List
+    </a>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

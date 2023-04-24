@@ -34,11 +34,7 @@
                             {
                                 <tr role="row" class="odd">
                                     <td class="sorting_1">
-                                       @* <img src="~/img/@item.Image" alt="contact-img" title="contact-img" class="rounded mr-3" height="48">
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id" class="text-body">@item.Name</a>
-                                            <br>
-                                        </p>*@
+                                       
                                         
                                         <img src="~/img/@item.Image" alt="product-image" title="product-image" class="rounded-circle" height="50" width="50">
                                         
@@ -92,7 +88,12 @@
 
         </div>
 
-    
+
+<div class="">
+    <a asp-controller="Customer" asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
+        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to Home
+    </a>
+</div>  
 
 
 

@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    
 }
 
 <h1 style="color: blue;text-align: center">
@@ -41,9 +43,13 @@
         </div>
     </div>
     <br>
-    <div>
-        <a asp-action="Index">Back to List</a>
+    <div class="">
+        
+        <a  asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
+        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to List
+    </a>
     </div>
+
 
 
 @section Scripts {

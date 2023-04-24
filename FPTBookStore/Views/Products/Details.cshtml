@@ -1,7 +1,9 @@
 ﻿@model KTBook.Models.Product
 
 
-    <h3>Product Details</h3>
+ <h1 style="color: black;text-align: center">
+    KTBook Store Product Details 
+</h1>
     <div class="container-fluid">
         <!-- end page title -->
 
@@ -19,14 +21,7 @@
                             <div class="col-lg-7">
                                 <form class="pl-lg-4">
                                     <!-- Product title -->
-                                    <h3 class="mt-0">@Model.Name</h3>
-                                    <p class="font-16">
-                                        <span class="text-warning mdi mdi-star"></span>
-                                        <span class="text-warning mdi mdi-star"></span>
-                                        <span class="text-warning mdi mdi-star"></span>
-                                        <span class="text-warning mdi mdi-star"></span>
-                                        <span class="text-warning mdi mdi-star"></span>
-                                    </p>
+                                    <h3 class="mt-0">Name Book: @Model.Name</h3>
                                     <!-- Product stock -->
                                     @if (Model.Quantity >= 1)
                                     {
@@ -39,8 +34,7 @@
 
                                     <!-- Product description -->
                                     <div class="mt-4">
-                                        <h6 class="font-14">Retail Price:</h6>
-                                        <h3> $@Model.Price</h3>
+                                        <h6 class="font-14">Retail Price: @Model.Price $</h6>
                                     </div>
 
                                     <!-- Quantity -->
@@ -50,26 +44,16 @@
 
                                     <!-- Product description -->
                                     <div class="mt-4">
-                                        <h6 class="font-14">Description:</h6>
-                                        <p>@Model.Description</p>
+                                        <h6 class="font-14">Description:@Model.Description</h6>
                                     </div>
 
                                     <!-- Product information -->
                                     <div class="mt-4">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <h6 class="font-14">Available Stock:</h6>
-                                                <p class="text-sm lh-150">@Model.Quantity</p>
+                                                <h6 class="font-14">Available Stock: @Model.Quantity</h6>
                                             </div>
-                                            <div class="col-md-4">
-                                                <h6 class="font-14">Number of Orders:</h6>
-                                                @{
-                                                    Random rnd = new Random();
-                                                    // This will return either 1 or 2 randomly.
-                                                    int order = rnd.Next(1, 5000);
-                                                }
-                                                <p class="text-sm lh-150">@order</p>
-                                            </div>
+                                            
                                         </div>
                                     </div>
 
@@ -82,6 +66,13 @@
         </div>
         <!-- end row-->
 
+    </div>
+
+    <div class="">
+        
+        <a  asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
+        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to List
+    </a>
     </div>
 
 

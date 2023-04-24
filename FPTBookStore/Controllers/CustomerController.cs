@@ -2,7 +2,6 @@
 using KTBook.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Data;
 using System.Security.Claims;
@@ -54,14 +53,7 @@ namespace KTBook.Controllers
         }
 
 
-        public IActionResult Index2(int? id)
-        {
-            var products = context.Product.ToList();
-            var categories = context.Category.ToList();
-            ViewBag.Categories = categories;
-            var productSearch = context.Category.Include(c => c.Products).FirstOrDefault(c => c.Id == id);
-            return View(productSearch);
-        }
+
         [HttpPost]
         public IActionResult Search(string search)
         {

@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace KTBook.Controllers
 {
 
-
-
-
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext context;
@@ -25,51 +22,6 @@ namespace KTBook.Controllers
             ViewBag.Checks = categories.Count;
             return View(categories);
         }
-
-        public IActionResult Approve(int? id)
-        {
-            var categories = context.Category.ToList();
-            var item = categories.Find(p => p.Id == id);
-
-
-            var categories2 = context.Category.ToList();
-            var item2 = categories2.Find(p => p.Name == item.Name);
-
-            item2.Status = "Active";
-
-            context.Category.Update(item2);
-
-            context.Category.Remove(item);
-
-            context.SaveChanges();
-            return Redirect("/Admin");
-        }
-        public IActionResult ListOrder()
-        {
-            var orders = context.Order.ToList();
-            ViewBag.Users = context.Users.ToList();
-            ViewBag.products = context.Product.ToList();
-            return View(orders);
-        }
-        public IActionResult Reject(int? id)
-        {
-            var categories = context.Category.ToList();
-            var item = categories.Find(p => p.Id == id);
-
-            var categories2 = context.Category.ToList();
-            var item2 = categories2.Find(p => p.Name == item.Name);
-
-            item2.Status = "Reject";
-
-            context.Category.Update(item2);
-
-            context.Category.Remove(item);
-
-            context.SaveChanges();
-            return Redirect("/Admin");
-        }
-
-        //Below are actions to reset password
 
         public IActionResult Reset()
         {
