@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿ @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
@@ -88,11 +88,7 @@
 
                                     
                                 }
-                              
                                      <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li> 
-                                
-
-                                
                             </ul>
                         </div>
                     </div>
@@ -101,8 +97,6 @@
         </div>
         <!-- header section end -->
         <!-- banner section start -->
-
-
         <div class="outline_section layout_padding">
             <div class="container">
                 <div id="my_slider" class="carousel slide" data-ride="carousel">
@@ -134,23 +128,7 @@
             </div>
         </div>
      </div>
-
-      
-
-
-
-
     @RenderBody()
-    
-
-
-
-
-
-
-
-
-
     <!-- fashion section end -->
     <!-- footertart -->
 
@@ -178,6 +156,5 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
-
 </body>
 </html>
