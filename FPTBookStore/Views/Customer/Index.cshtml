@@ -1,29 +1,19 @@
-﻿@model List<Product>
+﻿@*@model List<Product>*@
+@model IEnumerable<Product>
 @{
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
     ViewData["Title"] = "Page Title";
 }
 
 
-<div class="container">
-    <div class="row mt-5">
-        <div class="col">
-            <div class="form-group">
-                <form asp-controller="Customer" asp-action="Search" method="post">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="top-search" name="search">
-                        <span class="mdi mdi-magnify search-icon"></span>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
-                @*<form asp-controller="Customer" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>*@
+<div class="container-fluid">
+    <div class="d-flex justify-content-end">
+        <form asp-controller="Customer" asp-action="Index" method="get">
+            <div class="input-group mb-3">
+                <input class="form-control me-2" type="search" name="SearchString" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 

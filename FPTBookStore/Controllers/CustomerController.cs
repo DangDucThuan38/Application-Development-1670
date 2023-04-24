@@ -2,6 +2,7 @@
 using KTBook.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Data;
 using System.Security.Claims;
@@ -44,12 +45,23 @@ namespace KTBook.Controllers
 
         }
         [Route("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var products = context.Product.ToList();
+            var products = from prd in context.Product select prd;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Name!.Contains(searchString));
+            }
+
             var categories = context.Category.ToList();
             ViewBag.Categories = categories;
-            return View(products);
+            return View(await products.ToListAsync());
+
+            //var products = context.Product.ToList();
+            //var categories = context.Category.ToList();
+            //ViewBag.Categories = categories;
+            //return View(products);
         }
 
 
