@@ -6,78 +6,80 @@
 
 
 
-        <div class="row mt-5">
-						<div class="col">
-							<div class="row">
-								<div class="col-4 mt-3">
-								</div>
-								<div class="col-5 ">
-									
-								</div>
-							</div>
-						</div>
-						<div class="col">
-						<div class="row">
-						<div class="col-5">
-							<div class="form-group">
-                               <form asp-controller="Customer" asp-action="Search" method="post">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search..." id="top-search" name="search">
-                                    <span class="mdi mdi-magnify search-icon"></span>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="submit">Search</button>
-                                    </div>
-                                </div>
-                            </form>
-							</div>
-						</div>
-						</div>
-         
-        			 </div>
-			</div>
+<div class="row mt-5">
+    <div class="col">
+        <div class="row">
+            <div class="col-4 mt-3">
+            </div>
+            <div class="col-5 ">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group">
+                    <form asp-controller="Customer" asp-action="Search" method="post">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="top-search" name="search">
+                            <span class="mdi mdi-magnify search-icon"></span>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-<div class="container-fluid mm-active"style="padding-bottom: 5%; background-color: ivory" >
+    </div>
+</div>
+
+<div class="container-fluid mm-active" style="padding-bottom: 5%; background-color: ivory">
     <div class="wrapper mm-show">
         <div class="content-page">
             <div class="content">
                 <div class="row">
                     @foreach (var item in Model)
                     {
-                          <div class="col-md-3 p-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <a asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id">
-                                <img class="card-img-top" src="~/img/@item.Image" width="380" height="210"></a>
-                            <h4 class="text text-primary mt-3">@item.Name</h4>
-                            <h5 class="text text-success">@item.Price $</h5>
-                        </div>
-                        @if (item.Quantity == 0)
-                        {
-                            <div class="card-subtitle">
-                                <p class="text text-danger h2">Out of stock</p>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="card-subtitle">
-                                <h5 class="text text-danger">In-stock: @item.Quantity</h5>
-                            </div>
-                            <div class="card-footer">
-                                <form asp-controller="Customer" asp-action="AddtoCart" asp-route-Id="@item.Id" >
-                                    <input type="hidden" name="id" value="@item.Id" />
-                                    <input class="form-control" type="number" name="quantity" required min="1" max="@item.Quantity">
-                                    <div class="form-group mt-3">
-                                        <input type="submit" class="btn btn-success" value="Add to Cart"
-                                        onclick="    return confirm('Are you sure to order this Books ?');"
-                                        />
+                        <div class="col-md-3 p-3">
+                            <div class="card border-dark h-100">
+                                <div class="card-body">
+                                    <a asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id">
+                                        <img class="card-img-top img-fluid img-thumbnail" style="height:280px" src="~/img/@item.Image">
+                                    </a>
+                                    <h4 class="text text-primary mt-3">@item.Name</h4>
+                                    <h5 class="text text-success">@item.Price $</h5>
+                                    @if (item.Quantity == 0)
+                                    {
+                                        <div class="card-subtitle">
+                                            <p class="text text-danger h2">Out of stock</p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="card-subtitle">
+                                            <h5 class="text text-danger">In-stock: @item.Quantity</h5>
+                                        </div>
+                                    }
+                                </div>
+                                @if(item.Quantity > 0)
+                                {
+                                    <div class="card-footer">
+                                        <form asp-controller="Customer" asp-action="AddtoCart" asp-route-Id="@item.Id">
+                                            <input type="hidden" name="id" value="@item.Id" />
+                                            <input class="form-control" type="number" name="quantity" required min="1" max="@item.Quantity">
+                                            <div class="form-group mt-3">
+                                                <input type="submit" class="btn btn-success" value="Add to Cart"
+                                                       onclick="    return confirm('Are you sure to order this Books ?');" />
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+                                }
                             </div>
-                        }
-                    </div>
-                </div>
+                        </div>
                     }
-              
+
                 </div>
             </div>
         </div>
