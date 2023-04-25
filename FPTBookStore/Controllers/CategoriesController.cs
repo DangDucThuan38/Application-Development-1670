@@ -17,12 +17,11 @@ namespace KTBook.Controllers
 
         // GET: Categories
 
-        [Authorize(Roles = "Administrator,Staff")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
-            return _context.Category != null ?
-                        View(await _context.Category.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Category'  is null.");
+            var categories = _context.Category.ToList();
+            return View(categories);
         }
 
         // GET: Categories/Details/5

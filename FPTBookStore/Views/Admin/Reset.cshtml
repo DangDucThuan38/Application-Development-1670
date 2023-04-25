@@ -2,76 +2,60 @@
     ViewData["Title"] = "Reset password";
 }
 
-<h1 style="color: black;text-align: center">
-    KTBook Store Manage Account 
-</h1>
-    @if (TempData["Message"] != null)
+<div class="container-fluid">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
     {
-        <center style="font-size: 200%;">
-            <span class="badge badge-danger" >@TempData["Message"]</span>
-    </center>
-    }
-    else
-    {
-        <p></p>
-    }
-@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-{
-    <table class="table table-hover">
-        <thead>
-        <tr style="background-color: beige">
-                <th>
-                    ID
-                </th>
-
-                <th>
-                    Email
-                </th>
-                <th>
-                    UserName
-                </th>
-                <th>
-                    Password
-                </th>
-                <th>
-                    Reset Account
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @item.Id
-                    </td>
-                    <td>
-                        @item.Email
-                    </td>
-                    <td>
-                        @item.UserName
-                    </td>
-
-                    <td>
-                        *********
-                    </td>
-                  
-                     <td>
-                        <a asp-controller="Admin" asp-action="Edit" class="action-icon" asp-route-id="@item.Id"> <i class="mdi mdi-square-edit-outline "></i></a>
-                     </td>
-
-                    
-
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr role="row">
+                    <th scope="col" class="text-center" colspan="4">
+                        <h1>KTBook Store Manage Account</h1>
+                    </th>
+                    <th scope="col">
+                        <a asp-controller="Customer" asp-action="Index" class="btn btn-outline-success" style="margin-left: 35%;">
+                            Back to Home
+                        </a>
+                    </th>
                 </tr>
-            }
+                <tr role="row">
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th style="width: 250px;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Action">Reset Account</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr role="row" class="odd">
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.UserName
+                        </td>
 
-        </tbody>
-    </table>
-
-    <div class="">
-    <a asp-controller="Customer" asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
-        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to Home
-    </a>
-    </div>
-}
-
+                        <td>
+                            *********
+                        </td>
+                        <td>
+                            <a asp-controller="Admin" asp-action="Edit" class="action-icon" asp-route-id="@item.Id"> <i class="mdi mdi-square-edit-outline "></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

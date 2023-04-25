@@ -5,17 +5,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 style="color: blue;text-align: center">
-    Manage KTBook Store  <a asp-controller="Products" asp-action="Create" class="btn btn-success button-add" type="button">
-        <i class="fa-solid fa-plus icon-plus" style="padding-top: 10px; color:blue"></i>
-    </a>
-</h1>
 
-<div class="table-responsive">
-    <div id="products-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-        <div class="col-sm-12">
-            <table class="table table-centered w-100 dt-responsive nowrap dataTable no-footer dtr-inline" id="products-datatable" role="grid" aria-describedby="products-datatable_info" style="width: 1551px;">
+<div class="container-fluid">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+    {
+        @if (Model.Count == 0)
+        {
+            <center>
+                <span class="badge badge-danger">Do not have any product</span>
+            </center>
+        }
+        else
+        {
+            <table class="table table-hover">
                 <thead class="thead-light">
+                    <tr role="row">
+                        <th scope="col" class="text-center" colspan="4">
+                            <h1>Manage KTBook Store</h1>
+                        </th>
+                        <th scope="col" colspan="2">
+                            <a asp-controller="Products" asp-action="Create" class="btn btn-outline-success" style="margin-left: 35%;">
+                                Add new
+                            </a>
+                        </th>
+                        <th scope="col">
+                            <a asp-controller="Customer" asp-action="Index" class="btn btn-outline-success" style="margin-left: 35%;">
+                                Back to Home
+                            </a>
+                        </th>
+                    </tr>
                     <tr role="row">
                         <th>Image</th>
                         <th>Name</th>
@@ -23,7 +41,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Status</th>
-                        <th style="width: 150px;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Action">Action</th>
+                        <th style="width: 250px;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,13 +56,11 @@
                                 <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id"> @item.Name</a>
                             </td>
                             <td>
-                                @{
-                                    for (int i = 0; i < ViewBag.Categories.Count; i++)
+                                @foreach(var each in ViewBag.Categories)
+                                {
+                                    if (each.Id == item.CategoryId)
                                     {
-                                        if (ViewBag.Categories[i].Id == item.CategoryId)
-                                        {
-                                            <text>@ViewBag.Categories[i].Name</text>
-                                        }
+                                        <text>@each.Name</text>
                                     }
                                 }
                             </td>
@@ -76,14 +92,10 @@
                     }
                 </tbody>
             </table>
-        </div>
-    </div>
+        }
+    }
 </div>
-<div class="">
-    <a asp-controller="Customer" asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
-        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to Home
-    </a>
-</div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

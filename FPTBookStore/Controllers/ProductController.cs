@@ -29,8 +29,6 @@ namespace KTBook.Controllers
             var categories = context.Category.ToList();
             ViewBag.Categories = categories;
             return View(products);
-            //ViewData["CategoryId"] = new SelectList(context.Set<Category>(), "Id", "Id");
-            //return View();
         }
 
         [Authorize(Roles = "Administrator,Staff")]
