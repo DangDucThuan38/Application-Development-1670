@@ -29,7 +29,10 @@ namespace KTBook.Controllers
             var categories = context.Category.ToList();
             ViewBag.Categories = categories;
             return View(products);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 53cbf8e320d4cd54e045ad6fef2e6fabd8686cb9
         }
 
 

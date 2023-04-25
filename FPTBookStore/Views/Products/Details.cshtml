@@ -1,78 +1,57 @@
 ﻿@model KTBook.Models.Product
 
+@*KTBook Store Product Details *@
 
- <h1 style="color: black;text-align: center">
-    KTBook Store Product Details 
-</h1>
-    <div class="container-fluid">
-        <!-- end page title -->
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
+<div class="container">
+    <div class="row mt-3 justify-content-between">
+        <h1>
+            KTBook Store Product Details 
+        </h1>
+        <a asp-action="Index" class="btn btn-success text-center">
+            Back to List
+        </a>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="~/img/@Model.Image" class="img-fluid rounded-start" alt="Product-img">
+                </div>
+                <div class="col-md-8">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <!-- Product image -->
-                                <a href="javascript: void(0);" class="text-center d-block mb-4">
-                                    <img src="~/img/@Model.Image" class="img-fluid" style="max-width: 280px;" alt="Product-img">
-                                </a>
-                            </div> <!-- end col -->
-                            <div class="col-lg-7">
-                                <form class="pl-lg-4">
-                                    <!-- Product title -->
-                                    <h3 class="mt-0">Name Book: @Model.Name</h3>
-                                    <!-- Product stock -->
-                                    @if (Model.Quantity >= 1)
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="3">
+                                        <h3>@Model.Name</h3>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Retail Price:</th>
+                                    <td>@Model.Price</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Available Stock</th>
+                                    @if(Model.Quantity > 0)
                                     {
-                                        <span class="badge badge-success mt-3">Instock</span>
+                                        <td>@Model.Quantity</td>
                                     }
                                     else
                                     {
-                                        <span class="badge badge-danger mt-3">Out of Stock</span>
+                                        <td>None</td>
                                     }
-
-                                    <!-- Product description -->
-                                    <div class="mt-4">
-                                        <h6 class="font-14">Retail Price: @Model.Price $</h6>
-                                    </div>
-
-                                    <!-- Quantity -->
-                                    <div class="mt-4">
-                                        <h6 class="font-14">Quantity: @Model.Quantity</h6>
-                                    </div>
-
-                                    <!-- Product description -->
-                                    <div class="mt-4">
-                                        <h6 class="font-14">Description:@Model.Description</h6>
-                                    </div>
-
-                                    <!-- Product information -->
-                                    <div class="mt-4">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h6 class="font-14">Available Stock: @Model.Quantity</h6>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div> <!-- end col -->
-                        </div> <!-- end row-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
+                                </tr>
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td>@Model.Description</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- end row-->
-
     </div>
-
-    <div class="">
-        
-        <a  asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
-        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to List
-    </a>
-    </div>
-
-
+</div>
