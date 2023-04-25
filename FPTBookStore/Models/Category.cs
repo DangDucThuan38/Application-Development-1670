@@ -20,6 +20,6 @@ namespace KTBook.Models
         public string? Status { get; set; }
     
 
-        public virtual ICollection<Product>? Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

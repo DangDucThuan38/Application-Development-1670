@@ -29,10 +29,10 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr role="row" class="odd">
+                       
+                             <tr role="row" class="odd">
                             <td class="sorting_1">
                                 <img src="~/img/@item.Image" alt="product-image" title="product-image" class="rounded-circle" height="50" width="50">
-
                             </td>
                             <td>
                                 <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id"> @item.Name</a>
@@ -49,9 +49,7 @@
                                 }
                             </td>
                             <td>
-                                $@item.Price
                             </td>
-
                             <td>
                                 @item.Quantity
                             </td>
@@ -73,6 +71,8 @@
                                 <a asp-controller="Products" asp-action="Confirm" class="action-icon" asp-route-id="@item.Id"> <i class="mdi mdi-delete"></i></a>
                             </td>
                         </tr>
+                        
+
                     }
                 </tbody>
             </table>

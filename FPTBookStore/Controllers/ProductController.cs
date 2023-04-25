@@ -29,9 +29,9 @@ namespace KTBook.Controllers
             var categories = context.Category.ToList();
             ViewBag.Categories = categories;
             return View(products);
-            //ViewData["CategoryId"] = new SelectList(context.Set<Category>(), "Id", "Id");
-            //return View();
+
         }
+
 
         [Authorize(Roles = "Administrator,Staff")]
         [HttpGet]
@@ -133,20 +133,7 @@ namespace KTBook.Controllers
 
             return View("Index", products);
         }
-        public IActionResult SortDESC()
-        {
-            var products = context.Product.OrderByDescending(p => p.Quantity).ToList();
-            var categories = context.Category.ToList();
-            ViewBag.Categories = categories;
-            return View("Index", products);
-        }
-        public IActionResult SortASC()
-        {
-            var products = context.Product.OrderBy(p => p.Quantity).ToList();
-            var categories = context.Category.ToList();
-            ViewBag.Categories = categories;
-            return View("Index", products);
-        }
+
     }
 
 
